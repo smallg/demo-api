@@ -1,14 +1,11 @@
-import express from 'express';
-import { createClient } from 'redis';
+const express = require('express');
+const { setKey, getKey, delKey } = require('./utils/redis');
 
 const app = express();
 const port = 3000;
-const client = await createClient()
-  .on('error', (err) => console.log('Redis Client Error', err))
-  .connect();
 
 app.get('/', async (req, res) => {
-  await client.set('key', 'value3333');
+  await setKey('key', 'smallg');
   res.send('Hello World!');
 });
 
